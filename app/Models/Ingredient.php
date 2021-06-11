@@ -33,7 +33,7 @@ class Ingredient extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'measure_id'
+        'name', 'supplier', 'measure_id'
     ];
 
     /**
