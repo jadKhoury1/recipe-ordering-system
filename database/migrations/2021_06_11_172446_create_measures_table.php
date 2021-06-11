@@ -14,7 +14,7 @@ class CreateMeasuresTable extends Migration
     public function up()
     {
         Schema::create('measures', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name', 10)->unique();
             $table->timestamps();
         });
