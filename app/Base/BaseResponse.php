@@ -25,7 +25,7 @@ class BaseResponse extends JsonResponse
      */
     public function statusOk($data = [], $statusCode = 200, $headers = [])
     {
-        return $this->createResponse($data, self::OK, $statusCode, $headers);
+        return self::createResponse($data, self::OK, $statusCode, $headers);
     }
 
     /**
@@ -39,7 +39,7 @@ class BaseResponse extends JsonResponse
      */
     public function statusFail($data = [], $statusCode = 200, $headers = [])
     {
-        return $this->createResponse($data, self::FAILED, $statusCode, $headers);
+        return self::createResponse($data, self::FAILED, $statusCode, $headers);
     }
 
     /**
@@ -51,9 +51,9 @@ class BaseResponse extends JsonResponse
      *
      * @return JsonResponse
      */
-    public function forbidden($data = [], $statusCode = 403, $headers = [])
+    public static function forbidden($data = [], $statusCode = 403, $headers = [])
     {
-        return $this->createResponse($data, self::FAILED, $statusCode, $headers);
+        return self::createResponse($data, self::FAILED, $statusCode, $headers);
     }
 
     /**
@@ -65,9 +65,9 @@ class BaseResponse extends JsonResponse
      *
      * @return JsonResponse
      */
-    public function unauthorized($data = [], $statusCode = 401, $headers = [])
+    public static function unauthorized($data = [], $statusCode = 401, $headers = [])
     {
-        return $this->createResponse($data, self::FAILED, $statusCode, $headers);
+        return self::createResponse($data, self::FAILED, $statusCode, $headers);
     }
 
     /**
@@ -80,7 +80,7 @@ class BaseResponse extends JsonResponse
      *
      * @return JsonResponse
      */
-    private function createResponse($data, $status, $statusCode, $headers = [])
+    private static function createResponse($data, $status, $statusCode, $headers = [])
     {
         $dataToReturn = [];
 
