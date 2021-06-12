@@ -39,6 +39,12 @@ class RecipeController extends BaseController
 
     public function get()
     {
+        Ingredient::addAppendAttributes(['amount']);
+        $recipes = Recipe::query()
+            ->with('ingredients')
+            ->orderByDesc('id')
+            ->cursorPaginate();
 
+        return $this->response->statusOk($recipes);
     }
 }
