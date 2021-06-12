@@ -15,7 +15,7 @@ class CreateBoxesTable extends Migration
     {
         Schema::create('boxes', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('order_date');
+            $table->dateTime('delivery_date');
             $table->timestamps();
         });
     }

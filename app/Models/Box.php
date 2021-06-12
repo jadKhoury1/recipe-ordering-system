@@ -11,7 +11,7 @@ class Box extends BaseModel
      *
      * @var array
      */
-    protected $fillable = ['order_date'];
+    protected $fillable = ['delivery_date'];
 
 
     /**
