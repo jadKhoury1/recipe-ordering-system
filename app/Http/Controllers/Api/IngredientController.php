@@ -55,7 +55,7 @@ class IngredientController extends BaseController
         $totalRecipes = $this->buildTotalRecipesQuery($orderDate);
 
         return DB::table('recipe_ingredients')
-            ->select(['ingredient_id', DB::raw('sum(ingredient_amount * total_recipes) as total_amount')])
+            ->select(['ingredient_id', DB::raw('sum(ingredient_amount * total_recipes) as required_amount')])
             ->joinSub($totalRecipes, 'total_recipes', function (JoinClause $join) {
                 $join->on('total_recipes.recipe_id', '=', 'recipe_ingredients.recipe_id');
             })
