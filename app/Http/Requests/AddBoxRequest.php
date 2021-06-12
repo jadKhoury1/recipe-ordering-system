@@ -28,7 +28,7 @@ class AddBoxRequest extends BaseFormRequest
     {
         return [
             'delivery_date' => [
-                'bail', 'required', 'date_format:Y-m-d h:i',
+                'bail', 'required', 'date_format:Y-m-d H:i',
                 'after:' . Carbon::now()->addHours(48)->startOfMinute()
             ],
             'recipe_ids' => [

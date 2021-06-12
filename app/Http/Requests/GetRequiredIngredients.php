@@ -27,7 +27,7 @@ class GetRequiredIngredients extends BaseFormRequest
     {
         return [
             'order_date' => [
-                'bail', 'required', 'date', 'date_format:Y-m-d h:i',
+                'bail', 'required', 'date', 'date_format:Y-m-d H:i',
                 'after_or_equal:' . Carbon::now()
             ]
         ];
