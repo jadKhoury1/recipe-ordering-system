@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class BaseModel extends Model
 {
 
+
+    /**
+     * Set hidden fields
+     *
+     * @var array
+     */
+    protected $hidden = ['created_at', 'updated_at', 'pivot'];
+
     /**
      * Holds all the extra appended attributes that should be added to the model
      *
