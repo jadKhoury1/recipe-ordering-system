@@ -32,7 +32,7 @@ class RecipeController extends BaseController
         Ingredient::addAppendAttributes(['amount']);
         $recipe->load('ingredients');
         return $this->response->statusOk([
-            'message' => 'Recipe Created Successfully',
+            'message' => 'Recipe Added Successfully',
             'recipe'  => $recipe
         ]);
     }

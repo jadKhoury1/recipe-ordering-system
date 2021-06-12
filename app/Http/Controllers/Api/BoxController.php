@@ -30,7 +30,7 @@ class BoxController extends BaseController
         $box->load('recipes.ingredients');
 
         return $this->response->statusOk([
-            'message' => 'Box created successfully',
+            'message' => 'Box Added successfully',
             'box'     => $box
         ]);
     }
