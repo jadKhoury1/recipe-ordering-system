@@ -11,7 +11,7 @@ class Ingredient extends BaseModel
      *
      * @var array
      */
-    protected $hidden = ['measure'];
+    protected $hidden = ['measure', 'pivot'];
 
     /**
      * Eager load relations
@@ -26,6 +26,7 @@ class Ingredient extends BaseModel
      * @var array
      */
     protected $appends = ['measurement_value'];
+
 
     /**
      * Set the fields that are mass assignable
@@ -44,6 +45,16 @@ class Ingredient extends BaseModel
     public function getMeasurementValueAttribute()
     {
         return isset($this->measure) ? $this->measure->name : '';
+    }
+
+    /**
+     * Get the amount of the ingredient associated with the recipe
+     *
+     * @return int
+     */
+    public function getAmountAttribute()
+    {
+        return isset($this->pivot) && isset($this->pivot->ingredient_amount) ? $this->pivot->ingredient_amount : 0;
     }
 
 
