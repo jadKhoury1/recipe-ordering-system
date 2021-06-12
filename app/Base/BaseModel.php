@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class BaseModel extends Model
 {
 
+    /**
+     * Specify the number of records that should be returned per page on pagination
+     *
+     * @var int
+     */
+    protected $perPage = 20;
 
     /**
      * Set hidden fields
