@@ -7,11 +7,13 @@ use App\Base\BaseModel;
 class Ingredient extends BaseModel
 {
     /**
-     * Set hidden field
+     * Set hidden fields
      *
      * @var array
      */
-    protected $hidden = ['measure', 'pivot'];
+    protected $hidden = [
+       'created_at', 'updated_at', 'measure', 'pivot'
+    ];
 
     /**
      * Eager load relations
