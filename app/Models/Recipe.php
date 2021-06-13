@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Recipe extends BaseModel
 {
+    use HasFactory;
 
     /**
      * Specify the fields that are mass assignable

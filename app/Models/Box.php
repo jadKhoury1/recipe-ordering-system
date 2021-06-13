@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Box extends BaseModel
 {
+
+    use HasFactory;
+    
     /**
      * Set the fields that are mass assignable
      *
