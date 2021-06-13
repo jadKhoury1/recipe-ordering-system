@@ -9,7 +9,7 @@ class Box extends BaseModel
 {
 
     use HasFactory;
-    
+
     /**
      * Set the fields that are mass assignable
      *
