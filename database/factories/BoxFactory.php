@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Box;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class BoxFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Box::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $faker = \Faker\Factory::create();
+        return [
+            'delivery_date' => $faker->dateTimeBetween('-1 week', '+1 month'),
+        ];
+    }
+}
