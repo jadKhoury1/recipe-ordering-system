@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ingredient extends BaseModel
 {
+    use HasFactory;
+
     /**
      * Set hidden fields
      *

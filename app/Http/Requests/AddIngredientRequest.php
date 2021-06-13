@@ -25,7 +25,7 @@ class AddIngredientRequest extends BaseFormRequest
     {
         return [
             'name'       => 'bail|required|string|between:3,255',
-            'supplier'   => 'bail|required|string|between:3,25',
+            'supplier'   => 'bail|required|string|between:3,35',
             'measure_id' => 'bail|required|integer|exists:measures,id'
         ];
     }
