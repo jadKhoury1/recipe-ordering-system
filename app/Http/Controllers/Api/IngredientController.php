@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use Carbon\Carbon;
 use App\Models\Ingredient;
 use App\Base\BaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\JoinClause;
@@ -25,14 +26,21 @@ class IngredientController extends BaseController
         ]);
     }
 
-    public function get ()
+    public function get (Request $request)
     {
-        return $this->response->statusOk(Ingredient::query()->orderByDesc('id')->simplePaginate());
+        $supplier = $request->input('supplier');
+
+        $ingredients = Ingredient::query()
+            ->filterSupplier($supplier)
+            ->orderByDesc('id')
+            ->simplePaginate();
+
+        return $this->response->statusOk($ingredients);
     }
 
     public function getRequired(GetRequiredIngredients $request)
     {
-        $orderDate = $request->validated()['order_date'];
+        $orderDate = $request->get('order_date');
 
         $ingredients = Ingredient::query()
             ->joinSub($this->getTotalIngredientsQuery($orderDate), 'total_ingredients', function (JoinClause $join) {
