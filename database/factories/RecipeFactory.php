@@ -15,6 +15,7 @@ class RecipeFactory extends Factory
      */
     protected $model = Recipe::class;
 
+
     /**
      * Define the model's default state.
      *
@@ -26,7 +27,7 @@ class RecipeFactory extends Factory
         $faker->addProvider(new Restaurant ($faker));
         return [
             'name'        => $faker->foodName(),
-            'description' => $faker->name()
+            'description' => $faker->text()
         ];
     }
 }
