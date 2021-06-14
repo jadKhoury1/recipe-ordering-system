@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ingredient extends BaseModel
@@ -71,5 +72,18 @@ class Ingredient extends BaseModel
     public function measure()
     {
         return $this->belongsTo(Measure::class, 'measure_id');
+    }
+
+    /**
+     * Scope that filter ingredients by supplier
+     *
+     * @param Builder $query
+     * @param string $supplier
+     */
+    public function scopeFilterSupplier(Builder $query, $supplier)
+    {
+        if ($supplier !== null) {
+            $query->where('supplier', 'LIKE', "%{$supplier}%");
+        }
     }
 }
