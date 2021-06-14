@@ -23,22 +23,50 @@ class IngredientTest extends TestCase
      */
     protected $seeder = MeasureSeeder::class;
 
+
     /**
-     * Create Ingredient test
+     * Create an ingredient and return the test response
      *
-     * @return void
+     * @param $measure
+     *
+     * @return \Illuminate\Testing\TestResponse
      */
-    public function test_create_ingredient_success()
+    private function createIngredient(&$measure)
     {
         $measure = Measure::query()->first();
 
-        $response = $this->postJson('/api/ingredient', [
+        return $this->postJson('/api/ingredient', [
             'name'       => 'Tomato',
             'supplier'   => 'Test Supplier',
             'measure_id' => $measure->id
         ]);
+    }
 
-        $response->assertStatus(200)
+
+    /**
+     * Test case hat verifies that an ingredient record was created after hitting the endpoint
+     *
+     * @return void
+     */
+    public function test_create_ingredient_success_database()
+    {
+        $this->createIngredient($measure);
+
+        $this->assertDatabaseHas('ingredients', [
+            'id' => 1, 'name' => 'Tomato', 'supplier' => 'Test Supplier', 'measure_id' => $measure->id
+        ]);
+    }
+
+
+    /**
+     * Test case hat verifies that the correct response is returned record after creating an ingredient
+     *
+     * @return void
+     */
+    public function test_create_ingredient_success_response()
+    {
+
+        $this->createIngredient($measure)->assertStatus(200)
                  ->assertJson( function (AssertableJson $json) use ($measure) {
                      $json->where('status', BaseResponse::OK)
                           ->has('response.ingredient', function (AssertableJson $json) use ($measure) {
