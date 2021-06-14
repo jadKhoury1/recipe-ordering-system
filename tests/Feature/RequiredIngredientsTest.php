@@ -16,11 +16,12 @@ use Illuminate\Testing\AssertableJsonString;
 use Illuminate\Testing\Fluent\AssertableJson;
 use FakerRestaurant\Provider\en_US\Restaurant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class RequiredIngredientsTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use RefreshDatabase, WithoutMiddleware;
 
     /**
      * Holds an instance of the Faker Generator class

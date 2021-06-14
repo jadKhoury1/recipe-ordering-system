@@ -10,11 +10,12 @@ use Database\Seeders\MeasureSeeder;
 use Database\Seeders\IngredientSeeder;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class IngredientTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use RefreshDatabase, WithoutMiddleware;
 
 
     /**
