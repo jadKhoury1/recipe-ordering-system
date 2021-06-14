@@ -22,15 +22,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/ingredient', [IngredientController::class, 'add']);
+    Route::get('/ingredients', [IngredientController::class, 'get']);
+    Route::get('/requiredIngredients', [IngredientController::class, 'getRequired']);
 
-Route::post('/ingredient', [IngredientController::class, 'add']);
-Route::get('/ingredients', [IngredientController::class, 'get']);
-Route::get('/requiredIngredients', [IngredientController::class, 'getRequired']);
+    Route::post('/recipe', [RecipeController::class, 'add']);
+    Route::get('/recipes', [RecipeController::class, 'get']);
 
-Route::post('/recipe', [RecipeController::class, 'add']);
-Route::get('/recipes', [RecipeController::class, 'get']);
+    Route::post('/box', [BoxController::class, 'add']);
+    Route::get('/boxes', [BoxController::class, 'get']);
+});
 
-Route::post('/box', [BoxController::class, 'add']);
-Route::get('/boxes', [BoxController::class, 'get']);
 
 
