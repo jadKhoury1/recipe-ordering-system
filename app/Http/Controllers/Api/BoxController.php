@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\GetBoxRequest;
 use App\Models\Box;
 use App\Models\Ingredient;
 use App\Base\BaseController;
@@ -33,5 +34,18 @@ class BoxController extends BaseController
             'message' => 'Box Added successfully',
             'box'     => $box
         ]);
+    }
+
+    public function get(GetBoxRequest $request)
+    {
+        $fromDate = $request->input('from_delivery_date');
+        $toDate   = $request->input('to_delivery_date');
+
+        $boxes = Box::query()
+            ->filterDeliveryDate($fromDate, $toDate)
+            ->orderByDesc('delivery_date')
+            ->simplePaginate(20);
+
+        return $this->response->statusOk($boxes);
     }
 }

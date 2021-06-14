@@ -32,7 +32,7 @@ class IngredientController extends BaseController
 
     public function getRequired(GetRequiredIngredients $request)
     {
-        $orderDate = $request->validated()['order_date'];
+        $orderDate = $request->get('order_date');
 
         $ingredients = Ingredient::query()
             ->joinSub($this->getTotalIngredientsQuery($orderDate), 'total_ingredients', function (JoinClause $join) {

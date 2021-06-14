@@ -31,5 +31,6 @@ Route::post('/recipe', [RecipeController::class, 'add']);
 Route::get('/recipes', [RecipeController::class, 'get']);
 
 Route::post('/box', [BoxController::class, 'add']);
+Route::get('/boxes', [BoxController::class, 'get']);
 
 
