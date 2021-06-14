@@ -43,7 +43,7 @@ class AddBoxRequest extends BaseFormRequest
                     // if the number of recipes returned from the database is different
                     // from the supplied number of IDs - then the IDs are not correct
                     if ($recipesCount !== count($uniqueValues)) {
-                        return $fail("{$attribute} IDs are not valid");
+                        return $fail("{$attribute} are not valid");
                     }
                 }
             ]
