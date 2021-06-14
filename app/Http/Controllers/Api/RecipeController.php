@@ -43,7 +43,7 @@ class RecipeController extends BaseController
         $recipes = Recipe::query()
             ->with('ingredients')
             ->orderByDesc('id')
-            ->cursorPaginate();
+            ->simplePaginate();
 
         return $this->response->statusOk($recipes);
     }

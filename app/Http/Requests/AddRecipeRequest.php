@@ -34,6 +34,11 @@ class AddRecipeRequest extends BaseFormRequest {
                 function ($attribute, $values, $fail) {
 
                     foreach ($values as $value) {
+
+                        if (!is_array($value)) {
+                            return $fail('Ingredient must be an array');
+                        }
+
                         $validator = Validator::make($value, [
                             'id' => 'bail|required|integer',
                             'amount' => 'bail|required|numeric|min:1'

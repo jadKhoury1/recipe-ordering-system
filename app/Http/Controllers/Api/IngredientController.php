@@ -27,7 +27,7 @@ class IngredientController extends BaseController
 
     public function get ()
     {
-        return $this->response->statusOk(Ingredient::query()->orderByDesc('id')->cursorPaginate());
+        return $this->response->statusOk(Ingredient::query()->orderByDesc('id')->simplePaginate());
     }
 
     public function getRequired(GetRequiredIngredients $request)
