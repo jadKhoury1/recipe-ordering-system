@@ -40,6 +40,11 @@ class RecipeTest extends TestCase
     }
 
 
+    /**
+     * Test case hat verifies that a recipe record was created after hitting the endpoint
+     *
+     * @return void
+     */
     public function test_create_recipe_success_database()
     {
         $this->createRecipe();
@@ -50,7 +55,7 @@ class RecipeTest extends TestCase
     }
 
     /**
-     * Create Recipe test
+     * Test case hat verifies that the correct response is returned record after creating a recipe
      *
      * @return void
      */
