@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Database\Seeders\MeasureSeeder;
 use Tests\TestCase;
 use App\Base\BaseResponse;
 use App\Models\Ingredient;
@@ -23,7 +24,11 @@ class RecipeTest extends TestCase
      */
     private function createRecipe()
     {
-        $this->seed(IngredientSeeder::class);
+        $this->seed([
+            MeasureSeeder::class,
+            IngredientSeeder::class
+        ]);
+
         $ingredients = Ingredient::query()->inRandomOrder()->limit(5)
             ->get()->map(function ($ingredient) {
                 return [
@@ -50,8 +55,8 @@ class RecipeTest extends TestCase
         $this->createRecipe();
 
         $this->assertDatabaseHas('recipes', [
-            'id' => 1, 'name' => 'Test Recipe', 'description' => 'Test description'
-        ]);
+            'name' => 'Test Recipe', 'description' => 'Test description'
+        ])->assertDatabaseCount('recipe_ingredients', 5);
     }
 
     /**
@@ -121,7 +126,6 @@ class RecipeTest extends TestCase
      */
     public function test_create_recipe_invalid_amount_value()
     {
-        $this->seed(IngredientSeeder::class);
         $response = $this->postJson('/api/recipe', [
             'name'        => 'Test Recipe',
             'description' => 'Test description',
@@ -152,8 +156,11 @@ class RecipeTest extends TestCase
      */
     public function test_get_recipes()
     {
-        $this->seed(IngredientSeeder::class);
-        $this->seed(RecipeSeeder::class);
+        $this->seed([
+            MeasureSeeder::class,
+            IngredientSeeder::class,
+            RecipeSeeder::class
+        ]);
 
         $response = $this->getJson('/api/recipes');
 

@@ -16,13 +16,6 @@ class IngredientTest extends TestCase
 
     use RefreshDatabase;
 
-    /**
-     * Run a Measure seeder before each test.
-     *
-     * @var string
-     */
-    protected $seeder = MeasureSeeder::class;
-
 
     /**
      * Create an ingredient and return the test response
@@ -33,6 +26,8 @@ class IngredientTest extends TestCase
      */
     private function createIngredient(&$measure)
     {
+        $this->seed(MeasureSeeder::class);
+
         $measure = Measure::query()->first();
 
         return $this->postJson('/api/ingredient', [
@@ -53,7 +48,7 @@ class IngredientTest extends TestCase
         $this->createIngredient($measure);
 
         $this->assertDatabaseHas('ingredients', [
-            'id' => 1, 'name' => 'Tomato', 'supplier' => 'Test Supplier', 'measure_id' => $measure->id
+             'name' => 'Tomato', 'supplier' => 'Test Supplier', 'measure_id' => $measure->id
         ]);
     }
 
@@ -117,7 +112,10 @@ class IngredientTest extends TestCase
      */
     public function test_get_ingredients()
     {
-        $this->seed(IngredientSeeder::class);
+        $this->seed([
+            MeasureSeeder::class,
+            IngredientSeeder::class
+        ]);
 
         $response = $this->getJson('/api/ingredients');
 
