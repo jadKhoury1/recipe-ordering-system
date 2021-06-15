@@ -42,7 +42,7 @@ Now docker should be up and running. We can check the running containers by exec
 
 ## Run Commands In Container
 To be able to run commands inside the container, run the following command
-*docker exec -t {APP_ID} bash* <br />
+*docker exec -it {APP_ID} bash* <br />
 
 We now accessed the app container,and we will run the start.sh script that will initialize the database,
 **sh start.sh**  <br />
