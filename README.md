@@ -68,7 +68,7 @@ To be able to run the unit tests, you need to access the **App** container and e
 
 After running the command you will see all the test cases being executed
 
-##Postman
+## Postman
 You can import the following postman collection https://www.getpostman.com/collections/66a9e9c0f86ccf3cff4e to view and test the APIs <br />
 
 *Dont't forget to sent the Bearer token or the API will not be accessible*
