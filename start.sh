@@ -16,4 +16,8 @@ php artisan migrate;
 php artisan migrate --env=testing;
 php artisan db:seed;
 
+php artisan key:generate;
+php artisan key:generate --env=testing;
+
+echo Token:
 php artisan token:create admin;
