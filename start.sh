@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -f .env ] ; then export $(cat .env | sed 's/#.*//g' | xargs) ; fi ;
+if [ -f .env ] ; then export $(cat .env | sed 's/\r$//#.*//g' | xargs) ; fi ;
 
 mysql -h $DB_HOST -u root -p${DB_PASSWORD} << EOF
     # Create database
@@ -13,5 +13,7 @@ mysql -h $DB_HOST -u root -p${DB_PASSWORD} << EOF
 EOF
 
 php artisan migrate;
-php artisan migrate --env=testing
-php artisan db:seed --class=MeasureSeeder;
+php artisan migrate --env=testing;
+php artisan db:seed;
+
+php artisan token:create admin;
